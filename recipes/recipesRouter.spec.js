@@ -11,11 +11,11 @@ describe('server', function () {
 describe('CRUD reqs for /api/recipes', function () {
     let token;
     beforeEach(async () => {
-        const response = await request(server)
+        const response = await test(server)
             .post('/api/auth/login')
             .send({ username: 'michael', password: 'jordan' })
         token = response.body.token;
-        request(server)
+        test(server)
         .post('/api/auth/login')
         .send({ username: 'michael', password: 'jordan' })
     });
