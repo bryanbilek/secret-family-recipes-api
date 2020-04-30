@@ -1,0 +1,35 @@
+{
+  "name": "bw-secretfamilyrecipes-1",
+  "version": "1.0.0",
+  "description": "Back-End for Secret Family Recipes",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env DB_ENV=testing jest --watch",
+    "server": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.0",
+    "knex-cleaner": "^1.3.0",
+    "pg": "^8.0.3",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.3",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
