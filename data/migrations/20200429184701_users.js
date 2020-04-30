@@ -10,9 +10,9 @@ exports.up = function (knex) {
             tbl.integer('user_id').unsigned().notNullable().references('users.id')
             tbl.text('recipe_name', 128).notNullable();
             tbl.text('description', 800).notNullable();
-            tbl.text('prep_time', 128);
-            tbl.text('cook_time', 128);
-            tbl.text('serving_size', 128);
+            tbl.text('prep_time', 128).notNullable();
+            tbl.text('cook_time', 128).notNullable();
+            tbl.text('serving_size', 128).notNullable();
             tbl.string('image_url');
         })
         .createTable('ingrediants', (tbl) => {
