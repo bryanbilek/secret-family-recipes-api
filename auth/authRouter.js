@@ -11,7 +11,7 @@ router.post('/register', (req, res) => {
     user.password = hash;
     Users.add(user)
         .then(users => {
-            res.status(201).json(users);
+            res.status(201).json({ message: 'Registration successful' });
         })
         .catch(err => {
             console.log('ERR', err)
@@ -56,7 +56,7 @@ router.put('/edit_user/:id', (req, res) => {
 router.delete('/delete_user/:id', (req, res) => {
     Users.remove(req.params.id)
         .then(user => {
-            res.status(204).json(user);
+            res.status(204).json({ message: 'Successfully deleted user' });
         })
         .catch(err => {
             res.status(500).json({ message: 'Problem deleting user' });
