@@ -7,7 +7,7 @@ exports.up = function (knex) {
         })
         .createTable('recipes', (tbl) => {
             tbl.increments();
-            tbl.integer('user_id').unsigned().notNullable().references('users.id')
+            tbl.integer('user_id').unsigned().notNullable().references('users.id').onUpdate('CASCADE').onDelete('CASCADE')
             tbl.text('recipe_name', 128).notNullable();
             tbl.text('description', 800).notNullable();
             tbl.text('prep_time', 128).notNullable();
@@ -19,13 +19,13 @@ exports.up = function (knex) {
             tbl.increments();
             tbl.text('ingrediant_name', 128).unique().notNullable();
             tbl.text('quantity');
-            tbl.integer('recipe_id').unsigned().notNullable().references('recipes.id');
+            tbl.integer('recipe_id').unsigned().notNullable().references('recipes.id').onUpdate('CASCADE').onDelete('CASCADE')
         })
         .createTable('steps', (tbl) => {
             tbl.increments();
             tbl.integer('step_number').unsigned().notNullable();
             tbl.text('instructions').notNullable();
-            tbl.integer('recipe_id').unsigned().notNullable().references('recipes.id');
+            tbl.integer('recipe_id').unsigned().notNullable().references('recipes.id').onUpdate('CASCADE').onDelete('CASCADE')
         })
         .createTable('user_recipe_ratings', (tbl) => {
             tbl.increments();

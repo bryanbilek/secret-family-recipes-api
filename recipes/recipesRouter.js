@@ -139,6 +139,7 @@ router.post('/add_fav', (req, res) => {
 router.put('/:id', (req, res) => {
     Recipes.updateRecipe(req.params.id, req.body)
         .then(recipe => {
+            console.log("PUT recipe", recipe)
             if (recipe) {
                 res.status(201).json(recipe);
             } else {
@@ -215,6 +216,7 @@ router.delete('delete_step/:id', (req, res) => {
 router.delete('delete_ingrediant/:id', (req, res) => {
     Recipes.removeIngrediant(req.params.id)
         .then(ingrediant => {
+            console.log("DEL ingred", ingrediant);
             if (ingrediant) {
                 res.status(201).json(ingrediant);
             } else {
@@ -222,7 +224,7 @@ router.delete('delete_ingrediant/:id', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ message: 'Problem deleting ingrediant' });
+            res.status(500).json({ message: 'Problem deleting ingrediant', err });
         });
 });
 

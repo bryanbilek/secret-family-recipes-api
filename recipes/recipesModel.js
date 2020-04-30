@@ -105,7 +105,7 @@ function addFavorite(fav) {
 }
 
 //PUT reqs
-function updateRecipe(changes, id) {
+function updateRecipe(id, changes) {
     return db('recipes')
         .where({ id })
         .update(changes)
