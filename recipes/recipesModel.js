@@ -7,6 +7,9 @@ module.exports = {
     findFavorites,
     findIngrediants,
     findSteps,
+    findStepId,
+    findIngrediantId,
+    findFavId,
 
     //POST reqs
     addRecipe,
@@ -41,6 +44,10 @@ function findFavorites(user_id) {
         .where({ 'f.user_id': user_id });
 }
 
+function findFavId(id) {
+    return db('user_recipe_favorites').where({ id }).first();
+  }
+
 function findIngrediants(recipe_id) {
     return db('ingrediants as i')
         .join('recipes as r', 'i.recipe_id', 'r.id')
@@ -48,12 +55,20 @@ function findIngrediants(recipe_id) {
         .where({ recipe_id });
 }
 
+function findIngrediantId(id) {
+    return db('ingrediants').where({ id }).first();
+  }
+
 function findSteps(recipe_id) {
     return db('steps as st')
         .join('recipes as r', 'st.recipe_id', 'r.id')
         .select('st.instructions', 'st.step_number')
         .where({ recipe_id });
 }
+
+function findStepId(id) {
+    return db('steps').where({ id }).first();
+  }
 
 //POST reqs
 function addRecipe(recipe) {
@@ -69,7 +84,7 @@ function addStep(step) {
     return db('steps')
         .insert(step, 'id')
         .then((ids) => {
-            return getStepId(ids[0]);
+            return findStepId(ids[0]);
         });
 }
 
@@ -101,7 +116,7 @@ function updateSteps(changes, id) {
     return db('steps')
         .where({ id })
         .update(changes)
-        .then(() => getStepId(id));
+        .then(() => findStepId(id));
 }
 
 function updateIngrediants(changes, id) {

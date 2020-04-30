@@ -77,6 +77,7 @@ router.get('/:id/steps', (req, res) => {
 router.post('/add_recipe', (req, res) => {
     Recipes.addRecipe(req.body)
         .then(recipes => {
+            console.log("ADD_REC", recipes)
             if (recipes) {
                 res.status(201).json(recipes);
             } else {
@@ -84,7 +85,7 @@ router.post('/add_recipe', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ message: 'Problem creating recipe' });
+            res.status(500).json({ message: 'Problem creating recipe', err });
         });
 });
 
